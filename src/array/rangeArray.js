@@ -1,0 +1,1 @@
+export const rangeArray = (len) => Array.from(new Array(len).keys())
