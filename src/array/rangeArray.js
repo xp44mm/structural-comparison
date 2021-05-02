@@ -1,1 +1,1 @@
-export const rangeArray = (len) => Array.from(new Array(len).keys())
+export const rangeArray = (length) => Array.from({length}).map((v,i)=>i)

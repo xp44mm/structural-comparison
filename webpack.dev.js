@@ -1,11 +1,9 @@
-const path = require('path')
 const { merge } = require('webpack-merge')
 const common = require('./webpack.common.js')
 
 module.exports = merge(common, {
     mode: 'development',
 
-    devtool: 'eval-source-map',
     output: {
         filename: '[name].[contenthash].js',
     },
@@ -17,10 +15,10 @@ module.exports = merge(common, {
     },
 
     optimization: {
-        runtimeChunk: 'single',
-        splitChunks: {
-            chunks: 'all',
-        },
+        //runtimeChunk: 'single',
+        //splitChunks: {
+        //    chunks: 'all',
+        //},
     }
 
 })

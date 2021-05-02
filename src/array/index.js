@@ -1,3 +1,5 @@
+export { arrayInsert } from './arrayInsert'
+export { arrayRemove } from './arrayRemove'
 export { differenceArray } from './differenceArray'
 export { distinctArray } from './distinctArray'
 export { findIndexFromSet } from './findIndexFromSet'

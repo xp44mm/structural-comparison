@@ -9,7 +9,7 @@ test('keys & values', () => {
     let keys = [['a'], ['b'], ['c', 0], ['c', 1], ['c', 2, 'e']]
 
     expect(deep.keys).toEqual(keys)
-    expect(deep.values).toEqual([0, 1, 2, 3, 4])
+    expect(deep.getValues()).toEqual([0, 1, 2, 3, 4])
 })
 
 test('find index', () => {

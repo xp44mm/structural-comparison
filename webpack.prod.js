@@ -1,4 +1,3 @@
-const path = require('path')
 const { merge } = require('webpack-merge')
 const common = require('./webpack.common.js')
 
@@ -6,7 +5,10 @@ module.exports = merge(common, {
     mode: 'production',
 
     output: {
-        filename: '[name].[contenthash].js',
+        filename: 'structural-comparison.js',
+        library: 'structuralComparison',
+        libraryTarget: 'umd',
+        globalObject: 'this',
     },
 
     externals: [
@@ -23,11 +25,4 @@ module.exports = merge(common, {
         },
     ],
 
-    output: {
-        filename: 'hyperscript-rxjs.js',
-        path: path.resolve(__dirname, 'dist'),
-        library: 'hyperscript',
-        libraryTarget: 'umd',
-        globalObject: 'this',
-    },
 })
