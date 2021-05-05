@@ -1,2 +1,2 @@
 export { extractProperty } from './extractProperty'
-export { pickObject } from './pickObject'
+export { intersectObject, intersectObject as pickObject } from './intersectObject'

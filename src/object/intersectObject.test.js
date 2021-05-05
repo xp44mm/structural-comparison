@@ -1,4 +1,4 @@
-import { pickObject } from './pickObject'
+import { intersectObject } from './intersectObject'
 
 test('pickObject test', () => {
     let obj = {
@@ -9,7 +9,8 @@ test('pickObject test', () => {
         e: 5
     }
 
-    let y = pickObject(obj, ['a', 'd', 'e'])
+    let y = intersectObject(obj, ['a', 'd', 'e'])
+
     expect(y).toEqual({ a: 1, d: 4, e: 5 })
 
 })

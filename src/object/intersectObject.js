@@ -3,9 +3,11 @@
  * @param {object} obj
  * @param {string[]} keys
  */
-export const pickObject = (obj, keys) =>
+export const intersectObject = (obj, keys) =>
     Object.fromEntries(
         keys
             .filter(key => key in obj)
             .map(key => [key, obj[key]])
     )
+
+//intersectObject
