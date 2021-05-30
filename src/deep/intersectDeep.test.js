@@ -2,14 +2,25 @@ import { Deep } from './Deep'
 import { intersectDeep } from './intersectDeep'
 
 test('test intersectDeep', () => {
-    let entries = [[[0, 0], 0], [[0, 1], 1], [[1, 0], 2], [[1, 1], 3]]
-    let x = new Deep(entries)
+    let entries = [
+        [[0, 0], 0], //*
+        [[0, 1], 1], 
+        [[1, 0], 2], 
+        [[1, 1], 3], //*
+        ]
+    let deep = new Deep(entries)
 
-    let keys = [[0, 0], [1, 1]]
+    let keys = [
+        [0, 0],
+        [1, 1],
+        ]
 
-    let y = x |> intersectDeep(keys)
+    let y = deep |> intersectDeep(keys)
 
-    let e = [[[0, 0], 0], [[1, 1], 3]]
+    let e = [
+        [[0, 0], 0], 
+        [[1, 1], 3],
+        ]
 
     expect(y.entries).toEqual(e)
 })

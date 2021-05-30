@@ -2,49 +2,38 @@ import { groupArrayBy, groupSortedEntries } from './groupArrayBy'
 import { defaultCompare } from '../comparison'
 
 describe('groupArrayBy', function () {
-    ///返回的group key不保留输入顺序。
-    test('splits the list into groups according to the grouping function', function() {
-        const students = [
-            { name: 'Abby', score: 84 },
-            { name: 'Brad', score: 73 },
-            { name: 'Chris', score: 89 },
-            { name: 'Dianne', score: 99 },
-            { name: 'Eddy', score: 58 },
-            { name: 'Fred', score: 67 },
-            { name: 'Gillian', score: 91 },
-            { name: 'Hannah', score: 78 },
-            { name: 'Irene', score: 85 },
-            { name: 'Jack', score: 69 },
-        ]
-        let grouping = student => (student.score > 80 ? '录取' : '淘汰')
-        const x = groupArrayBy(students, grouping)
+test('group array by', function() {
+    const students = [
+        { name: 'Abby', score: 84 },
+        { name: 'Brad', score: 73 },
+        { name: 'Chris', score: 89 },
+        { name: 'Eddy', score: 58 },
+        { name: 'Gillian', score: 91 },
+    ]
+    let getKey = student => (student.score > 80 ? '录取' : '淘汰')
+    const x = groupArrayBy(students, getKey)
 
-        //console.log(x)
-        let y = [
+    ///返回的group key保留输入顺序。
+    let y = [
+        [
+            '录取',
             [
-                '录取',
-                [
-                    { name: 'Abby', score: 84 },
-                    { name: 'Chris', score: 89 },
-                    { name: 'Dianne', score: 99 },
-                    { name: 'Gillian', score: 91 },
-                    { name: 'Irene', score: 85 },
-                ],
+                { name: 'Abby', score: 84 },
+                { name: 'Chris', score: 89 },
+                { name: 'Gillian', score: 91 },
             ],
+        ],
+        [
+            '淘汰',
             [
-                '淘汰',
-                [
-                    { name: 'Brad', score: 73 },
-                    { name: 'Eddy', score: 58 },
-                    { name: 'Fred', score: 67 },
-                    { name: 'Hannah', score: 78 },
-                    { name: 'Jack', score: 69 },
-                ],
+                { name: 'Brad', score: 73 },
+                { name: 'Eddy', score: 58 },
             ],
-        ]
+        ],
+    ]
 
-        expect(x).toEqual(y)
-    })
+    expect(x).toEqual(y)
+})
 
     test('sorted key value pairs', () => {
         //console.log(x)

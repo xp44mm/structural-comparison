@@ -4,10 +4,10 @@
  * @param {any} item
  * @param {any} index
  */
-export function arrayInsert(array, item, index) {
+export function arrayInsert(array, item, index = array.length) {
     const len = array.length
     for (let i = len; i > index; i--) {
-        array[i] = array[i-1]
+        array[i] = array[i - 1]
     }
     array[index] = item
 }

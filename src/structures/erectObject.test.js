@@ -1,4 +1,4 @@
-﻿import { erectObject, isRange, tojs } from './erectObject'
+﻿import { erectObject, tojs } from './erectObject'
 
 describe('test erectObject', () => {
     let data = {
@@ -63,18 +63,43 @@ describe('test erectObject', () => {
     })
 
     test('erectObject test', () => {
-        let x = entries
-        let y = erectObject(x)
+        //输入的词条可以不排序，这个词条用到tojs中将会使c丢失成员。
+        let entries = [
+            [['c', 1], 3],
+            [['a'], 0],
+            [['b', 'a'], 1],
+            [['c', 0], 2],
+        ]
 
-        let r = {
-            arr: [10, 11, 12],
-            cleanLeakage: 14,
-            dirtyLeakage: 13,
-            effect: { HCl: 7, SO2: 5, SO3: 6 },
-            inlet: { HCl: 2, SO2: 0, SO3: 1 }
+        let y = erectObject(entries)
+
+        let e = {
+            a: 0,
+            b: { a: 1 },
+            c: [2, 3]
         }
 
-        expect(y).toEqual(r)
+        expect(y).toEqual(e)
     })
+
+    test('tojs test', () => {
+        let entries = [
+            [['a'], 0],
+            [['b', 'a'], 1],
+            [['c', 0], 2],
+            [['c', 1], 3],
+        ]
+
+        let y = tojs(entries)
+
+        let e = {
+            a: 0,
+            b: { a: 1 },
+            c: [2, 3]
+        }
+
+        expect(y).toEqual(e)
+    })
+
 
 })

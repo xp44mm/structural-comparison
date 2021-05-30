@@ -4,12 +4,11 @@ import { isRange } from './isRange'
 
 /*从扁平数据集，建立js对象*/
 
-export function erectObject(flatEntries) {
+export function erectObject(entries) {
     //排序为了分组，首次排序后，不需要再排序。
-    let collection = flatEntries.sort(([a], [b]) => compareKeyPath(a, b))
-    return tojs(collection)
+    let flatEntries = entries.sort(([a], [b]) => compareKeyPath(a, b))
+    return tojs(flatEntries)
 }
-
 
 /// 假设输入已经排好顺序，按照keyPath。
 export function tojs(flatEntries) {

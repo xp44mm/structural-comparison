@@ -31,7 +31,7 @@ describe('test flatten', () => {
         [['cleanLeakage'], 14],
     ]
 
-    test('默认标量为叶节点', function() {
+    test('默认标量为叶节点', function () {
         let act = flat(data)
         expect(act).toEqual(entries)
     })
@@ -70,21 +70,26 @@ describe('test flatten', () => {
     })
 
     test('array as leaf', function () {
-        let act = flat(data, (v, k, path) => Array.isArray(v))
+        let data = {
+            a: {
+                a: 0,
+                b: 1,
+            },
+            b: [0, 1, 2]
+        }
 
-        let y = [
-            [['inlet', 'SO2'], 0],
-            [['inlet', 'SO3'], 1],
-            [['inlet', 'HCl'], 2],
-            [['effect', 'SO2'], 5],
-            [['effect', 'SO3'], 6],
-            [['effect', 'HCl'], 7],
-            [['arr'], [10, 11, 12]],
-            [['dirtyLeakage'], 13],
-            [['cleanLeakage'], 14],
+        let e = [
+            [['a', 'a'], 0],
+            [['a', 'b'], 1],
+            [['b'], [0, 1, 2]],
         ]
 
-        expect(act).toEqual(y)
+        let y = flat(data, (v, k, path) => Array.isArray(v))
+
+
+        expect(y).toEqual(e)
     })
+
+
 
 })

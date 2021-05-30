@@ -1,12 +1,12 @@
 import { defaultCompare } from '../defaultCompare'
 
 ///
-export function compareKey(k1, k2) {
-    let type1 = typeof k1
-    let type2 = typeof k2
+export function compareKey(a, b) {
+    let type1 = typeof a
+    let type2 = typeof b
 
     if (type1 === type2) {
-        return defaultCompare(k1,k2)
+        return defaultCompare(a,b)
     }
 
     //string > number

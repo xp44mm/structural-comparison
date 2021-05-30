@@ -1,6 +1,6 @@
 import { defaultCompare } from '../comparison'
 
-export function unionArray(a, b, compare = defaultCompare) {
+export function unionArray(set1, set2, compare = defaultCompare) {
     let loop = (acc, a, b) => {
         if (a.length === 0) {
             return [...acc, ...b]
@@ -17,6 +17,6 @@ export function unionArray(a, b, compare = defaultCompare) {
             }
         }
     }
-    return loop([], a, b)
+    return loop([], set1, set2)
 }
 

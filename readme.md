@@ -6,4 +6,5 @@ A js library of structual comparison.
 
 * structural flat or erect
 
-* object structure flat deep 
+* object structure flat deep
+

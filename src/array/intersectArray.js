@@ -1,6 +1,6 @@
 import { defaultCompare } from '../comparison'
 
-export function intersectArray(seta, setb, compare = defaultCompare) {
+export function intersectArray(set1, set2, compare = defaultCompare) {
     let loop = (acc, a, b) => {
         if (a.length === 0 || b.length === 0) {
             return acc
@@ -19,5 +19,5 @@ export function intersectArray(seta, setb, compare = defaultCompare) {
         }
     }
 
-    return loop([], seta, setb)
+    return loop([], set1, set2)
 }

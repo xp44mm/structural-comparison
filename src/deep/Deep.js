@@ -54,7 +54,6 @@ export class Deep {
     }
 
     /// 序列操作符
-
     map(...args) {
         let entries = this.entries.map(...args)
         return new Deep(entries)
