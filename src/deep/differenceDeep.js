@@ -1,6 +1,6 @@
-import { differenceArray } from "../array";
+import { differenceSet } from "../set";
 import { compareKeyPath } from "../comparison";
 
 export function differenceDeep(keys1, keys2) {
-    return differenceArray(keys1, keys2, compareKeyPath)
+    return differenceSet(keys1, keys2, compareKeyPath)
 }

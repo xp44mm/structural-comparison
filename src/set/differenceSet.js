@@ -6,7 +6,7 @@ import { defaultCompare } from '../comparison'
  * @param {any} set2
  * @param {any} compare
  */
-export function differenceArray(set1, set2, compare = defaultCompare) {
+export function differenceSet(set1, set2, compare = defaultCompare) {
     let loop = (acc, a, b) => {
         if (a.length === 0) {
             return acc

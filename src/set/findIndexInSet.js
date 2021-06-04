@@ -6,7 +6,7 @@ import { defaultCompare } from "../comparison"
  * @param {any} e 是要查找的元素
  * @param {(any,any)=>number} compare 元素的比较函数
  */
-export function findIndexFromSet(set, e, compare = defaultCompare) {
+export function findIndexInSet(set, e, compare = defaultCompare) {
     let loop = (i, st) => {
         if (st.length === 0) {
             return -1

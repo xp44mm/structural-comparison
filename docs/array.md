@@ -101,9 +101,9 @@ test('find index', () => {
 groupArrayBy(array, getKey, compareKey = defaultCompare)
 ```
 
-getKey是一个函数，接受数组中的元素，返回这个元素的主键。
+`getKey`是一个函数，接受数组中的元素，返回这个元素的主键。
 
-compareKey是一个函数，比较两个键的大小，相等为0，后大为-1，前大为1。
+`compareKey`是一个函数，比较两个键的大小，相等为0，后大为-1，前大为1。
 
 ```js
 test('group array by', function() {
@@ -139,7 +139,7 @@ test('group array by', function() {
 })
 ```
 
-intersectArray
+## intersectArray
 
 ```js
 intersectArray(set1, set2, compare = defaultCompare)
@@ -242,7 +242,7 @@ test('rangeArray', () => {
 sortedArrayToSet(sortedArray, compare = defaultCompare)
 ```
 
-升序排列的数组去重，即转变成集合。compare是元素的比较函数。
+升序排列的数组去重，即转变成集合。`compare`是元素的比较函数。
 
 ```js
 test('sortedArrayToSet', () => {

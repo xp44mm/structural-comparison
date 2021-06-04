@@ -1,4 +1,4 @@
-import { extractProperty } from '../object'
+import { pluckProperty } from '../object'
 import { Deep } from './Deep'
 
 /**
@@ -6,6 +6,6 @@ import { Deep } from './Deep'
  * @param {any} obj
  */
 export const freshValueDeep = (obj) => (deep) => {
-    let entries = deep.keys.map(k => [k, extractProperty(obj, k)])
+    let entries = deep.keys.map(k => [k, pluckProperty(obj, k)])
     return new Deep(entries)
 }

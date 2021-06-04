@@ -1,5 +1,5 @@
 import { BehaviorSubject } from 'rxjs'
-import { extractProperty } from '../object'
+import { pluckProperty } from '../object'
 import { objectToDeep } from './objectToDeep'
 
 test('test objectToDeep', () => {
@@ -22,7 +22,7 @@ test('test objectToDeep', () => {
 
     expect(deep.keys).toEqual(keys)
 
-    let entries = keys.map(k => [k, extractProperty(observables, k)])
+    let entries = keys.map(k => [k, pluckProperty(observables, k)])
     expect(deep.entries).toEqual(entries)
 
 })

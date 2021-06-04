@@ -4,10 +4,6 @@ describe('The definition of Infinity', () => {
         expect(typeof -Infinity).toEqual('number')
     })
 
-    test('global', () => {
-        expect(window.Infinity).toEqual(Infinity)
-    })
-
     test('Number', () => {
         expect(Number.POSITIVE_INFINITY).toEqual(Infinity)
         expect(Number.NEGATIVE_INFINITY).toEqual(-Infinity)

@@ -1,5 +1,5 @@
-import { findIndexFromSet, isEqualset, isSubset, isSuperset } from '../array'
 import { compareKeyPath } from '../comparison'
+import { findIndexInSet, isEqualset, isSubset, isSuperset } from '../set'
 import { tojs } from '../structures'
 
 /**
@@ -33,7 +33,7 @@ export class Deep {
 
     ///
     findIndex(searchKeyPath) {
-        return findIndexFromSet(this.keys, searchKeyPath, compareKeyPath)
+        return findIndexInSet(this.keys, searchKeyPath, compareKeyPath)
     }
 
     ///集合判断
