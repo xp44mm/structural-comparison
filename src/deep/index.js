@@ -1,4 +1,4 @@
-export { collectDeep } from './collectDeep'
+export { unionDeep } from './unionDeep'
 export { Deep } from "./Deep"
 export { differenceDeep } from "./differenceDeep"
 export { freshValueDeep } from "./freshValueDeep"

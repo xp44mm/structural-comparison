@@ -1,7 +1,7 @@
 import { compareEntries } from "./compareEntries"
 import { Deep } from "./Deep"
 
-export function collectDeep(deeps) {
+export function unionDeep(deeps) {
     let entries =
         deeps.map(deep => {
             if (deep instanceof Deep) {

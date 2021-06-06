@@ -1,6 +1,8 @@
 # Deep
 
-`Deep`表示一个数据模型的扁平化表示。这个类是不可变的，所有改变都只会创建新实例。
+`Deep`是一个类，表示一个对象的嵌套属性列表。这个类是不可变的，所有改变都只会创建新实例。
+
+## 实例成员
 
 其成员包括：
 
@@ -19,7 +21,7 @@ filter()
 forEach()
 ```
 
-## constructor
+### constructor
 
 ```js
 constructor(entries)
@@ -61,11 +63,11 @@ test('constructor entries', () => {
 })
 ```
 
-## entries
+### entries
 
 词条实例字段只是构造函数中输入的entries。用法见`constructor`的代码。
 
-## keys
+### keys
 
 表示数据模型的KeyPath数组，是一个缓存属性，多次调用只计算第一次。
 
@@ -88,7 +90,7 @@ test('deep keys', () => {
 })
 ```
 
-## getValues()
+### getValues()
 
 获取每个词条的值。返回数组。
 
@@ -106,7 +108,7 @@ test('deep getValues', () => {
 })
 ```
 
-## toObject()
+### toObject()
 
 返回Deep所代表的数据模型。
 
@@ -131,13 +133,13 @@ test('deep toObject', () => {
 })
 ```
 
-## findIndex()
+### findIndex()
 
 ```js
 findIndex(searchKeyPath)
 ```
 
-根据给定的`searchKeyPath`查找路径所在的索引。
+返回一个整数，根据给定的`searchKeyPath`查找路径所在的索引。
 
 ```js
 test('deep findIndex', () => {
@@ -154,13 +156,13 @@ test('deep findIndex', () => {
 })
 ```
 
-## structuralEqual()
+### structuralEqual()
 
 ```js
 structuralEqual(keys)
 ```
 
-判断`deep.keys`是否等于参数给定的`keys`
+返回一个布尔值。判断`deep.keys`是否等于参数给定的`keys`
 
 ```js
 test('structuralEqual', () => {
@@ -177,9 +179,13 @@ test('structuralEqual', () => {
 })
 ```
 
-## structuralSubset(keys)
+### structuralSubset(keys)
 
-判断`deep.keys`是否是参数给定的`keys`的子集。
+```js
+structuralSubset(keys)
+```
+
+返回一个布尔值。判断`deep.keys`是否是参数给定的`keys`的子集。
 
 ```js
 test('structuralSubset', () => {
@@ -198,9 +204,13 @@ test('structuralSubset', () => {
 })
 ```
 
-## structuralSuperset(keys)
+### structuralSuperset(keys)
 
-判断`deep.keys`是否是参数给定的`keys`超集。
+```js
+structuralSuperset(keys)
+```
+
+返回一个布尔值。判断`deep.keys`是否是参数给定的`keys`超集。
 
 ```js
 test('structuralSuperset', () => {
@@ -219,17 +229,17 @@ test('structuralSuperset', () => {
 })
 ```
 
+## Deep工厂函数
 
+下面是Deep工厂函数
 
-下面是转换函数
-
-## objectToDeep
+### objectToDeep
 
 ```js
 objectToDeep(obj, filter)
 ```
 
-用obj模型构造`Deep`对象。`filter(value,key,path)`是一个函数，判断某属性节点是否为叶节点。
+扁平化obj模型构造`Deep`对象。`filter(value,key,path)`是一个函数，判断obj嵌套属性节点是否为叶节点。叶节点将不再继续展开成员。
 
 ```js
 test('test objectToDeep', () => {
@@ -260,33 +270,74 @@ test('test objectToDeep', () => {
 
 `BehaviorSubject`是`rxjs`库的一个类。根据`filter`的指示，`objectToDeep`遇到这样类型的节点，不再继续分解对象。
 
-## differenceDeep
+### unionDeep
 
 ```js
-differenceDeep(keys1, keys2)
+unionDeep(deeps)
 ```
 
-keys1减去keys2的差。
+deeps是Deep数组，把deeps中的entries收集展开到一个新的entries中，并返回新Deep。注意各deeps中的路径最好不要重复。
 
 ```js
-test('differenceDeep test', () => {
-    let keys1 = [ [0], [1], ]
-    let keys2 = [ [1], [2], ]
-    let y = differenceDeep(keys1, keys2)
-    let e = [[0]]
-    expect(y).toEqual(e)
+test('unionDeep test', () => {
+    let deep1 = [
+        [["a", "b"], 0],
+        [["a", "c"], 1], //*
+    ]
+
+    let deep2 = [
+        [["a", "c"], 'x'], //*
+        [["a", "d"], 2],
+        [["a", "e"], 3],
+        [["f"], 4],
+    ]
+
+    //a,b中的键不能重复
+    let y = unionDeep([deep1, deep2])
+    let e = [
+        [["a", "b"], 0],
+        [["a", "c"], 1], //*
+        [["a", "c"], 'x'], //*
+        [["a", "d"], 2],
+        [["a", "e"], 3],
+        [["f"], 4],
+    ]
+    expect(y.entries).toEqual(e)
 })
 ```
 
+## 管道函数
 
+### differenceDeep
 
-## intersectDeep
+```js
+differenceDeep(keys)(deep)
+```
+
+返回一个新Deep实例，其词条既是输入deep的词条，且词条的键不能在keys中。
+
+```js
+import { differenceDeep } from './differenceDeep'
+import { Deep } from './Deep'
+
+test('differenceDeep test', () => {
+    let dp = new Deep([
+        [[0], 0], 
+        [[1], 1]
+        ])
+    let keys = [[1], [2]]
+    let y = dp |> differenceDeep(keys)
+    expect(y.entries).toEqual([[[0], 0]])
+})
+```
+
+### intersectDeep
 
 ```js
 intersectDeep(keys)(deep)
 ```
 
-取deep.keys与keys的交集，生成新的Deep。
+返回一个新的Deep实例。其词条既是输入deep的词条，且词条的键亦在keys中。
 
 ```js
 test('test intersectDeep', () => {
@@ -312,7 +363,7 @@ test('test intersectDeep', () => {
 
 
 
-## freshValueDeep
+### freshValueDeep
 
 ```js
 freshValueDeep(obj)(deep)
@@ -347,8 +398,7 @@ test('freshValueDeep', () => {
 })
 ```
 
-
-## replaceValueDeep
+### replaceValueDeep
 
 ```js
 replaceValueDeep(values)(deep)
@@ -377,9 +427,7 @@ test('replaceValueDeep', () => {
 })
 ```
 
-
-
-## zipValueDeep
+### zipValueDeep
 
 ```js
 zipValueDeep(values)(deep)
@@ -408,44 +456,8 @@ test('zipValueDeep', () => {
 })
 ```
 
+## 参考
 
-## collectDeep
+`structural-comparison`开源于GitHub，见xp44mm/structural-comparison仓库。位于其中的docs文件夹下有各函数用法的详细解释。
 
-```js
-collectDeep(deeps)
-```
-
-deeps是Deep数组，把deeps中的entries收集展开到一个新的entries中，并返回新Deep。注意各deeps中的路径最好不要重复。
-
-```js
-test('collectDeep test', () => {
-    let deep1 = [
-        [["a", "b"], 0],
-        [["a", "c"], 1], //*
-    ]
-
-    let deep2 = [
-        [["a", "c"], 'x'], //*
-        [["a", "d"], 2],
-        [["a", "e"], 3],
-        [["f"], 4],
-    ]
-
-    //a,b中的键不能重复
-    let y = collectDeep([deep1, deep2])
-    let e = [
-        [["a", "b"], 0],
-        [["a", "c"], 1], //*
-        [["a", "c"], 'x'], //*
-        [["a", "d"], 2],
-        [["a", "e"], 3],
-        [["f"], 4],
-    ]
-    expect(y.entries).toEqual(e)
-})
-```
-
-
-
-
-
+`deep-rxjs`进一步应用`Deep`，开源于GitHub，见xp44mm/deep-rxjs仓库。

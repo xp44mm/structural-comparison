@@ -1,6 +1,6 @@
-import { collectDeep } from './collectDeep'
+import { unionDeep } from './unionDeep'
 
-test('collectDeep test', () => {
+test('unionDeep test', () => {
     let deep1 = [
         [["a", "b"], 0],
         [["a", "c"], 1], //*
@@ -14,7 +14,7 @@ test('collectDeep test', () => {
     ]
 
     //a,b中的键不能重复
-    let y = collectDeep([deep1, deep2])
+    let y = unionDeep([deep1, deep2])
     let e = [
         [["a", "b"], 0],
         [["a", "c"], 1], //*
@@ -26,7 +26,7 @@ test('collectDeep test', () => {
     expect(y.entries).toEqual(e)
 })
 
-describe('collectDeep block', () => {
+describe('unionDeep block', () => {
 
 
 })
