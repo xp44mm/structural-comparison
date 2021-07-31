@@ -25,21 +25,21 @@ module.exports = {
                     },
                 ],
             },
-            {
-                test: /\.css$/,
-                exclude: [/[\\/]node_modules[\\/]/],
-                use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
-            },
-            {
-                test: /\.html$/,
-                exclude: [/[\\/]node_modules[\\/]/],
-                use: [{ loader: 'html-loader' }],
-            },
-            {
-                test: /\.(png|svg|jpg|jpeg|gif)$/i,
-                exclude: [/[\\/]node_modules[\\/]/],
-                type: 'asset',
-            },
+            //{
+            //    test: /\.css$/,
+            //    exclude: [/[\\/]node_modules[\\/]/],
+            //    use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
+            //},
+            //{
+            //    test: /\.html$/,
+            //    exclude: [/[\\/]node_modules[\\/]/],
+            //    use: [{ loader: 'html-loader' }],
+            //},
+            //{
+            //    test: /\.(png|svg|jpg|jpeg|gif)$/i,
+            //    exclude: [/[\\/]node_modules[\\/]/],
+            //    type: 'asset',
+            //},
         ],
     },
 
