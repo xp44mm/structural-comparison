@@ -1,8 +1,8 @@
-import { pluckProperty } from '../object'
+ï»¿import { pluckProperty } from '../object'
 import { Deep } from './Deep'
 
 /**
- * ´ÓÐÂ¶ÔÏóÖÐÌáÈ¡Öµ
+ * ä»Žæ–°å¯¹è±¡ä¸­æå–å€¼
  * @param {any} obj
  */
 export const freshValueDeep = (obj) => (deep) => {

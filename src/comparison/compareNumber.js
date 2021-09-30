@@ -1,7 +1,7 @@
-import { defaultCompare } from './defaultCompare'
+ï»¿import { defaultCompare } from './defaultCompare'
 
 /**
- * ¿ÉÒÔ±È½ÏNaN,Infinity,number,bigint
+ * å¯ä»¥æ¯”è¾ƒNaN,Infinity,number,bigint
  * @param {number|bigint} a
  * @param {number|bigint} b
  */
@@ -10,7 +10,7 @@ export function compareNumber(a, b) {
         return 0
     }
 
-    //NaN×î´ó
+    //NaNæœ€å¤§
     if (Number.isNaN(a)) {
         return 1
     }

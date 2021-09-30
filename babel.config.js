@@ -15,11 +15,11 @@ module.exports = function (api) {
         ],
     ]
     let plugins = [
-        '@babel/plugin-syntax-bigint',
         '@babel/plugin-proposal-export-default-from',
         '@babel/plugin-proposal-export-namespace-from',
         '@babel/plugin-proposal-class-properties',
-        ['@babel/plugin-proposal-pipeline-operator', { proposal: 'fsharp' }],
+        ["@babel/plugin-proposal-private-property-in-object", { "loose": false }],
+        ['@babel/plugin-proposal-pipeline-operator', { proposal: "minimal" }],
     ]
 
     return { presets, plugins }

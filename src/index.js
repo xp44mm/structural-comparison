@@ -5,7 +5,7 @@ export * from './object'
 export * from './set'
 export * from './structures'
 
-export { matching } from './matching'
+export { coalesce } from './coalesce'
 export { trampoline } from './trampoline'
 
 
