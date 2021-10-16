@@ -1,21 +1,18 @@
 import { mapWith } from './mapWith'
-import { callRight } from './call'
+import { maybe } from './maybe'
 
 describe('mapWith', () => {
     test('squaresOf', () => {
-        const squaresOf = (list) =>
-            list.map(x => x * x);
+        const squaresOf = mapWith((n) => n * n);
         let y = squaresOf([1, 2, 3, 4, 5])
         expect(y).toEqual([1, 4, 9, 16, 25])
     })
-
-    test('callRight', () => {
-        const map = (list, fn) => list.map(fn);
-        const squaresOf = callRight(map, n => n * n);
-        let y = squaresOf([1, 2, 3, 4, 5])
-        expect(y).toEqual([1, 4, 9, 16, 25])
+    test(' partial application is orthogonal to composition', () => {
+        const safeSquareAll = mapWith(maybe((n) => n * n));
+        let y = safeSquareAll([1, null, 2, 3])
+        //=> 
+        expect(y).toEqual([1, undefined, 4, 9])
     })
-
 
 })
 

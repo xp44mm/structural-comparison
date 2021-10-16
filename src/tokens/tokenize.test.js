@@ -13,6 +13,12 @@ test('iterator usage test', () => {
     let b = iterator.next()
     let c = iterator.next()
     let d = iterator.next()
-    console.log([a,b,c,d])
+    let res = [
+        { value: 'ELLIPSIS', done: false },
+        { value: { IDENTIFIER: 'rest' }, done: false },
+        { value: undefined, done: true },
+        { value: undefined, done: true }
+    ]
+    expect(res).toEqual([a, b, c, d])
 })
 

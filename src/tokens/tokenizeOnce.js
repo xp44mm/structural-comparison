@@ -1,4 +1,4 @@
-﻿import { coalesce } from "../coalesce"
+﻿import { cond } from "../ramda/cond"
 import { tryEllipsis } from './tryEllipsis'
 import { tryFirstChar } from './tryFirstChar'
 import { tryIdentifier } from './tryIdentifier'
@@ -6,7 +6,7 @@ import { tryNumber } from './tryNumber'
 import { tryQuote } from './tryQuote'
 import { tryWhitespace } from './tryWhitespace'
 
-export const tokenizeOnce = coalesce([
+export const tokenizeOnce = cond([
     tryWhitespace,
     tryFirstChar('{', 'LBRACE'),
     tryFirstChar('}', 'RBRACE'),

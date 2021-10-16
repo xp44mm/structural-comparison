@@ -1,5 +1,4 @@
 import { pluckWith } from './pluckWith';
-import { maybe } from './maybe';
 
 
 test('pluckWith test', () => {

@@ -1,5 +1,5 @@
 import { why } from './why.js'
-import { memoized } from '../recursivecombinators/memoized'
+import { memoized } from './memoized'
 
 describe('why', () => {
     test('basis', () => {

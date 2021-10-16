@@ -7,7 +7,7 @@ module.exports = function (api) {
         [
             '@babel/preset-env',
             {
-                targets: api.env('test') ? { node: 'current' } : { chrome: '91' },
+                targets: api.env('test') ? { node: 'current' } : { chrome: '94', edge: '94' },
                 loose: true, // convert from es6 to es5 loosely.
                 corejs: 3, //declaring a core-js version
                 useBuiltIns: 'entry',

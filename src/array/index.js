@@ -1,3 +1,4 @@
+export { advance } from './advance'
 export { arrayInsert } from './arrayInsert'
 export { arrayRemove } from './arrayRemove'
 export { distinctArray } from './distinctArray'

@@ -5,10 +5,9 @@
  * @returns {function}
  * 
  */
-export const why =
-  fn =>
-    (x => x(x))(
-      maker =>
-        (...args) =>
-          fn.call(this, maker(maker), ...args)
-    );
+export const why = fn =>
+  (x => x(x))(
+    maker =>
+      (...args) =>
+        fn.call(this, maker(maker), ...args)
+  );

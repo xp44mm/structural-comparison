@@ -1,6 +1,12 @@
 import { compose } from './compose.js'
 
 describe('compose', () => {
+    test('compose zero', () => {
+        const i = compose()
+        let y = i(2)
+        expect(y).toEqual(2)
+    })
+
     const addOne = (number) => number + 1;
     const double = (number) => number * 2;
 
