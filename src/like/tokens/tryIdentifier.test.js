@@ -21,7 +21,7 @@ test("tryIdentifier TYPE test", () => {
 test("tryIdentifier IDENT test", () => {
     let x = "xyz "
     let y = tryIdentifier(x)
-    expect(y).toEqual({ token: { IDENTIFIER: 'xyz' }, restInput: " " })
+    expect(y).toEqual({ token: { ID: 'xyz' }, restInput: " " })
 })
 
 

@@ -32,9 +32,23 @@ test('pop 1', () => {
     expect([...stack]).toEqual([0]);
 });
 
-test('pop 3', () => {
+test('pop many 0', () => {
     let stack = Stack.of(0, 1, 2, 3, 4, 5)
-    let y = stack.pop(3)
+    let y = stack.popMany(0)
+    expect(y).toEqual([]);
+    expect([...stack]).toEqual([0, 1, 2, 3, 4, 5]);
+});
+
+test('pop many 1', () => {
+    let stack = Stack.of(0, 1, 2, 3, 4, 5)
+    let y = stack.popMany(1)
+    expect(y).toEqual([5]);
+    expect([...stack]).toEqual([0, 1, 2, 3, 4]);
+});
+
+test('pop many 3', () => {
+    let stack = Stack.of(0, 1, 2, 3, 4, 5)
+    let y = stack.popMany(3)
     expect(y).toEqual([3, 4, 5]);
     expect([...stack]).toEqual([0, 1, 2]);
 });

@@ -4,7 +4,7 @@ import { trampoline } from './trampoline'
 describe('old', () => {
     test('factorial', () => {
         let factorial = function (n) {
-            let _fact = (x, n) => () => {
+            let _fact = (x, n) => () => { // thunk
                 if (n == 0) {
                     // base case
                     return x

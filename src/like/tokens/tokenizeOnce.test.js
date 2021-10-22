@@ -15,7 +15,7 @@ test("tryEllipsis test", () => {
 test("tryIdentifier test", () => {
     let x = "xyz"
     let y = tokenizeOnce(x)
-    expect(y).toEqual({ token: {IDENTIFIER:"xyz"}, restInput: "" })
+    expect(y).toEqual({ token: {ID:"xyz"}, restInput: "" })
 })
 
 test("tryNumber test", () => {

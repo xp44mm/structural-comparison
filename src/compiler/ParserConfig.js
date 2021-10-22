@@ -7,14 +7,15 @@ const _kernelSymbols_ = Symbol('kernelSymbols')
 const _getTag_ = Symbol('getTag')
 
 export class ParserConfig {
-    constructor(
+    constructor({
         rules,
         actions,
         kernelSymbols,
-    ) {
-        this[_rules_] = new Map(json.rules)
-        this[_actions_] = new Map(json.actions.map(([k, v]) => [k, new Map(v)]))
-        this[_kernelSymbols_] = new Map(json.kernelSymbols)
+
+    }) {
+        this[_rules_] = new Map(rules)
+        this[_actions_] = new Map(actions.map(([k, v]) => [k, new Map(v)]))
+        this[_kernelSymbols_] = new Map(kernelSymbols)
     }
 
     setGetTag(getTag) {
@@ -60,10 +61,10 @@ export class ParserConfig {
                 let leftside = symbols[0]
                 let len = symbols.length - 1 //产生式右侧符号的数量
 
-                let children = trees.pop(len)
+                let children = trees.popMany(len)
                 trees.push({ leftside, children })
 
-                states.pop(len) // 弹出状态，产生式体
+                states.drop(len) // 弹出状态，产生式体
                 let smr = states.peek() // = s_{m-r}
                 let newstate = actions.get(smr).get(leftside)
                 states.push(newstate)

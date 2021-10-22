@@ -1,0 +1,1 @@
+export { like } from './like'

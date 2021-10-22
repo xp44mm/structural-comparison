@@ -20,8 +20,8 @@ test('eggs test', () => {
 
     expect(y).toEqual([
         "Bob prefers to drink Ristretto",
-        "Ted prefers to drink Allongé",
         "Carol prefers to drink Cappuccino",
+        "Ted prefers to drink Allongé",
         "Alice prefers to drink Cappuccino",
 
     ])
