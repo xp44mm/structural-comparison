@@ -4,7 +4,7 @@
 
 ## 安装
 
-JavaScript已经实现模式匹配解构功能，没有实现模式匹配过滤功能。用模式来控制程序流，可以编写更加声明性，更加模块化的代码，请安装`structural-comparison`以支持此功能。
+JavaScript已经实现模式匹配解构功能，没有实现模式匹配过滤功能。用模式来控制程序流，可以编写更加声明性，更加模块化的代码，请安装`structural-comparison`以支持此功能。`structural-comparison`是一个函数库。包括函数式编程的常用函数。开源于GitHub，见`xp44mm/structural-comparison`仓库。
 
 ```bash
 npm i structural-comparison
@@ -26,7 +26,7 @@ match: (pattern:string) -> (input:any) -> boolean
 
 ### 字面量模式
 
-测试原子值。模式是基元值字面量，支持JSON中的所有字面量。包括`null`，布尔值，数字值，字符串值。字符串是JSON的双引号格式。不支持`undefined`，`NaN`，`Infinity`等非JSON值。
+测试原子值。模式是基元值字面量，支持JSON中的所有字面量。包括`null`，布尔值，数字值，字符串值。所有这些字面量遵守JSON格式。字面量不支持`undefined`，`NaN`，`Infinity`等非JSON值。
 
 ```js
 test("value NULL", () => {
@@ -195,7 +195,7 @@ let y = input => Array.isArray(input) && every elements matched
 
 ### 对象模式
 
-匹配一个对象。如果有省略号表示对象可以有任何更多的属性。只检测自有属性，忽略原型中的属性。对象语法支持特殊标识属性，快捷属性，属性不支持尾逗号。
+匹配一个对象。如果有省略号表示对象可以有任何更多的属性。只检测自有属性（`Object.keys`），忽略原型中的属性。对象语法支持特殊标识属性，快捷属性，属性不支持尾逗号。
 
 ```js
 test("value object", () => {
@@ -277,8 +277,6 @@ test("key QUOTE", () => {
 ```js
 let y = obj => typeof obj === 'object' && obj && !Array.isArray(obj) && every props matched
 ```
-
-
 
 ### OR模式
 
