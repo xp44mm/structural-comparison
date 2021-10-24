@@ -1,5 +1,5 @@
-import { tokenize } from '../tokens'
-import { typevalidparse } from './typevalidparse'
+import { tokenize } from '../src/match/tokens'
+import { typevalidparse } from '../src/match/parser'
 import { translate } from './translation'
 
 const parse = (input) => translate(typevalidparse(tokenize(input)))

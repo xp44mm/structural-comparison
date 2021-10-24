@@ -17,7 +17,7 @@ export { mockingbird } from './mockingbird.js'
 export { once } from './once.js'
 export { original } from './original'
 export { pipeline } from './pipeline.js'
-export { pluckWith } from './pluckWith';
+export { pluckWith } from './pluckWith'
 export { send } from './send'
 export { tap } from './tap.js'
 export { thunk } from './thunk'

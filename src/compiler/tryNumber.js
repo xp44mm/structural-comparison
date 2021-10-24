@@ -1,4 +1,4 @@
-﻿import { tryToken } from '../../compiler'
+﻿import { tryToken } from './tryToken'
 
 let prenum = tryToken(/^[-+]?\d+(\.\d+)?([eE][-+]?\d+)?/, 'NUMBER')
 

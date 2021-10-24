@@ -1,4 +1,4 @@
-import { token, prod, rightside, isProd } from './parseTree'
+import { token, prod, rightside, isProd } from '../src/compiler/parseTree'
 import { cond } from '../src/ramda/cond'
 
 export const translate = cond([

@@ -17,7 +17,7 @@ test('freshValueDeep', () => {
         ],
     }
 
-    let y = deep |> freshValueDeep(obj)
+    let y = freshValueDeep(obj)(deep)
     let e = [[['a'], 5], [['b'], 6], [['c', 0], 7], [['c', 1], 8], [['c', 2, 'e'], 9]]
 
     expect(y.entries).toEqual(e)

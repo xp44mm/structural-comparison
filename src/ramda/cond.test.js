@@ -1,4 +1,3 @@
-import { equals, always, T, trim, nAry } from 'ramda'
 import { cond } from './cond'
 
 describe('cond', () => {
@@ -9,9 +8,9 @@ describe('cond', () => {
 
   test('returns a conditional function', () => {
     let fn = cond([
-      [equals(0), always('water freezes at 0°C')],
-      [equals(100), always('water boils at 100°C')],
-      [T, function (temp) { return 'nothing special happens at ' + temp + '°C'; }]
+      [x => x === 0, x => ('water freezes at 0°C')],
+      [x => x === 100, x => ('water boils at 100°C')],
+      [x => true, function (temp) { return 'nothing special happens at ' + temp + '°C'; }]
     ]);
 
     expect(fn(0)).toEqual('water freezes at 0°C');
@@ -21,17 +20,17 @@ describe('cond', () => {
 
   test('returns a function which returns undefined if none of the predicates matches', () => {
     let fn = cond([
-      [equals('foo'), always(1)],
-      [equals('bar'), always(2)]
+      [x => x === ('foo'), x => (1)],
+      [x => x === ('bar'), x => (2)]
     ]);
     expect(fn('quux')).toEqual(undefined);
   });
 
   test('predicates are tested in order', () => {
     let fn = cond([
-      [T, always('foo')],
-      [T, always('bar')],
-      [T, always('baz')]
+      [x => true, x => ('foo')],
+      [x => true, x => ('bar')],
+      [x => true, x => ('baz')]
     ]);
     expect(fn()).toEqual('foo');
   });
@@ -43,21 +42,12 @@ describe('cond', () => {
     expect(fn(21, 42, 84)).toEqual([21, 42, 84, true]);
   });
 
-  test('retains highest predicate arity', () => {
-    let fn = cond([
-      [nAry(2, T), T],
-      [nAry(3, T), T],
-      [nAry(1, T), T]
-    ]);
-    // expect(fn.length).toEqual(3);
-  });
-
 });
 
 describe('cond new featrues', () => {
 
   test('just predicate and return result', () => {
-    let fmt = cond([trim]);
+    let fmt = cond([x => x.trim()]);
     let x = fmt(" ")
     expect(x).toEqual(undefined)
     let y = fmt("  x  ")
@@ -68,7 +58,7 @@ describe('cond new featrues', () => {
 
   test('cache predicate result', () => {
     let fmt = cond([
-      [trim, (_, res) => ({ res })],
+      [x => x.trim(), (_, res) => ({ res })],
     ]);
     let y = fmt("  x  ")
     expect(y).toEqual({ res: "x" })

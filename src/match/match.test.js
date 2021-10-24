@@ -1,8 +1,8 @@
-import { like } from './like'
+import { match } from './match'
 
 test("value NULL", () => {
     let input = "null"
-    let y = like(input)
+    let y = match(input)
     let e = { leftside: 'value', children: [{ token: 'NULL' }] }
     let u = { primitive: null }
     let v = y(null)
@@ -13,7 +13,7 @@ test("value NULL", () => {
 
 test("value boolean", () => {
     let input = "true|false"
-    let y = like(input)
+    let y = match(input)
     // console.log(y)
     let e = {
         leftside: 'value',
@@ -33,7 +33,7 @@ test("value boolean", () => {
 
 test("value number", () => {
     let input = "123"
-    let y = like(input)
+    let y = match(input)
     // console.log(y)
     let e = {
         leftside: 'value',
@@ -52,7 +52,7 @@ test("value number", () => {
 
 test("value quote", () => {
     let input = '""'
-    let y = like(input)
+    let y = match(input)
     // console.log(y)
     let e = {
         leftside: 'value',
@@ -69,7 +69,7 @@ test("value quote", () => {
 
 test("value TYPE", () => {
     let input = 'number'
-    let y = like(input)
+    let y = match(input)
     // console.log(y)
     let e = {
         leftside: 'value',
@@ -86,7 +86,7 @@ test("value TYPE", () => {
 
 test("value ID", () => {
     let input = 'x'
-    let y = like(input)
+    let y = match(input)
     // console.log(y)
     let e = {
         leftside: 'value',
@@ -102,7 +102,7 @@ test("value ID", () => {
 
 test("value array", () => {
     let input = '[]'
-    let y = like(input)
+    let y = match(input)
     // console.log(y.children[0].children)
     let e = {
         leftside: 'value',
@@ -117,7 +117,7 @@ test("value array", () => {
 
 test("array ELLIPSIS", () => {
     let input = '[...]'
-    let y = like(input)
+    let y = match(input)
     // console.log(y.children[0].children)
     let e = {
         leftside: 'value',
@@ -134,7 +134,7 @@ test("array ELLIPSIS", () => {
 
 test("value object", () => {
     let input = '{}'
-    let y = like(input)
+    let y = match(input)
     // console.log(y.children[0].children)
     let e = {
         leftside: 'value',
@@ -150,7 +150,7 @@ test("value object", () => {
 
 test("object ELLIPSIS", () => {
     let input = '{...}'
-    let y = like(input)
+    let y = match(input)
     // console.log(y.children[0].children[1].children[0].children[0])
     let e = {
         leftside: 'value',
@@ -171,7 +171,7 @@ test("object ELLIPSIS", () => {
 
 test("array elements", () => {
     let input = '[1]'
-    let y = like(input)
+    let y = match(input)
     // console.log(y.children[0].children)
     let e = {
         leftside: 'value',
@@ -196,7 +196,7 @@ test("array elements", () => {
 
 test("array elements ELLIPSIS", () => {
     let input = '[null, ...]'
-    let y = like(input)
+    let y = match(input)
     // console.log(y.children[0].children)
     let e = {
         leftside: 'value',
@@ -224,7 +224,7 @@ test("array elements ELLIPSIS", () => {
 
 test("array ELLIPSIS elements", () => {
     let input = '[ ..., null]'
-    let y = like(input)
+    let y = match(input)
     // console.log(y.children[0].children)
     let e = {
         leftside: 'value',
@@ -252,7 +252,7 @@ test("array ELLIPSIS elements", () => {
 
 test("array elements ELLIPSIS elements", () => {
     let input = '[1, ..., 2]'
-    let y = like(input)
+    let y = match(input)
     // console.log(y.children[0].children)
     let e = {
         leftside: 'value',
@@ -287,7 +287,7 @@ test("array elements ELLIPSIS elements", () => {
 
 test("elements elements value", () => {
     let input = '[1, 2]'
-    let y = like(input)
+    let y = match(input)
     // console.log(y.children[0].children[1].children[0])
     let e = {
         leftside: 'value',
@@ -320,7 +320,7 @@ test("elements elements value", () => {
 
 test("object properties", () => {
     let input = '{x}'
-    let y = like(input)
+    let y = match(input)
     // console.log(y.children[0].children[1].children[0].children[0])
     let e = {
         leftside: 'value',
@@ -343,7 +343,7 @@ test("object properties", () => {
 
 test("object properties ELLIPSIS", () => {
     let input = '{x,...}'
-    let y = like(input)
+    let y = match(input)
     // console.log(y.children[0].children[1].children[0].children[0])
     let e = {
         leftside: 'value',
@@ -366,7 +366,7 @@ test("object properties ELLIPSIS", () => {
 })
 test("properties properties prop", () => {
     let input = '{x,y}'
-    let y = like(input)
+    let y = match(input)
     // console.log(y.children[0].children[1])
     let e = {
         leftside: 'value',
@@ -396,7 +396,7 @@ test("properties properties prop", () => {
 
 test("prop key value", () => {
     let input = '{x:null}'
-    let y = like(input)
+    let y = match(input)
     // console.log(y.children[0].children[1].children[0].children[0])
     let e = {
         leftside: 'value',
@@ -423,7 +423,7 @@ test("prop key value", () => {
 
 test("key QUOTE", () => {
     let input = '{"1":null}'
-    let y = like(input)
+    let y = match(input)
     // console.log(y.children[0].children[1].children[0].children[0])
     let e = {
         leftside: 'value',
@@ -449,7 +449,7 @@ test("key QUOTE", () => {
 
 
 test("array head tail", () => {
-    let y = like('[1,2,...,4,5]')
+    let y = match('[1,2,...,4,5]')
     let v = y([1,2,3,4,5])
     let w = y([1,2,3])
     expect(v).toEqual(true)

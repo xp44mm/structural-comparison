@@ -1,4 +1,4 @@
-﻿import { tryToken } from '../../compiler'
+﻿import { tryToken } from './tryToken'
 
 export const preQuote = tryToken(/^"(\\u[0-9A-Fa-f]{4}|\\[\\"bfnrt]|[^\\"\r\n])*"/, 'QUOTE')
 

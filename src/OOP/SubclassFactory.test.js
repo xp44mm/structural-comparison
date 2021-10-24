@@ -1,5 +1,5 @@
 import { SubclassFactory } from './SubclassFactory'
-import { getAllConstructorNames } from './getAllConstructorNames'
+import { getAllConstructorNames } from '../allonge'
 
 class Todo {
     constructor(name) {

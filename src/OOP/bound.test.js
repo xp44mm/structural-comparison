@@ -1,5 +1,5 @@
 import { bound } from './bound'
-import { mapWith } from './mapWith'
+import { mapWith } from '../allonge/mapWith'
 
 function InventoryRecord(apples, oranges, eggs) {
     this.record = {

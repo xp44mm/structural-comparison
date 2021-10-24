@@ -11,18 +11,18 @@ module.exports = merge(common, {
         globalObject: 'this',
     },
 
-    externals: [
-        function rxjsExternals({ request }, callback) {
-            const parts = request.split('/')
-            if (parts[0] === 'rxjs') {
-                return callback(null, {
-                    root: parts,
-                    commonjs: request,
-                    commonjs2: request,
-                    amd: request,
-                })
-            } else { callback() }
-        },
-    ],
+    // externals: [
+    //     function rxjsExternals({ request }, callback) {
+    //         const parts = request.split('/')
+    //         if (parts[0] === 'rxjs') {
+    //             return callback(null, {
+    //                 root: parts,
+    //                 commonjs: request,
+    //                 commonjs2: request,
+    //                 amd: request,
+    //             })
+    //         } else { callback() }
+    //     },
+    // ],
 
 })
