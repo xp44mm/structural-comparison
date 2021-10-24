@@ -21,10 +21,10 @@
   },
   "name": "structural-comparison",
   "main": "dist/structural-comparison.js",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": "cuishengli<34696643@qq.com>",
   "description": "",
-  "keywords": [],
+  "keywords": ["pattern match"],
   "repository": {
     "type": "git",
     "url": "https://github.com/xp44mm/structural-comparison"
