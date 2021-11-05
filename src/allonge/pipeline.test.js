@@ -1,4 +1,4 @@
-import { pipeline } from './pipeline.js'
+import { pipeline, pipe } from './pipeline.js'
 
 describe('pipeline', () => {
     const addOne = (number) => number + 1;
@@ -21,6 +21,26 @@ describe('pipeline', () => {
         expect(y).toEqual('{[(5)]}')
     })
 
+})
 
+describe('pipe', () => {
+    test('pipe 0', () => {
+        expect(() => pipe()).toThrow(Error)
+    })
+
+    test('pipe 1', () => {
+        let y = pipe(3)
+        expect(y).toEqual(3)
+    })
+
+    let paren = x => `(${x})`
+    let brack = x => `[${x}]`
+    let brace = x => `{${x}}`
+
+    test('pipe 4', () => {
+        let y = pipe(5, paren, brack, brace)
+        expect(y).toEqual('{[(5)]}')
+    })
 
 })
+

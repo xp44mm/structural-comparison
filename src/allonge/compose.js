@@ -1,5 +1,5 @@
 export function compose(...fns) {
-    if (fns.length === 0) return x => x
+    if (fns.length === 0) throw new Error('compose()')
     return function (...args) {
         let maxi = fns.length - 1
         let acc = fns[maxi].apply(this, args)
@@ -9,4 +9,14 @@ export function compose(...fns) {
         }
         return acc
     }
+}
+
+export function composer(...args) {
+    if (args.length === 0) throw new Error('composer()')
+    let result = args[args.length - 1]
+    for (let i = args.length - 2; i >= 0; i--) {
+        let fn = args[i]
+        result = fn.call(this, result)
+    }
+    return result
 }

@@ -1,10 +1,8 @@
-import { compose } from './compose.js'
+import { compose,composer } from './compose.js'
 
 describe('compose', () => {
     test('compose zero', () => {
-        const i = compose()
-        let y = i(2)
-        expect(y).toEqual(2)
+        expect(() => compose()()).toThrow(Error);
     })
 
     const addOne = (number) => number + 1;
@@ -27,6 +25,31 @@ describe('compose', () => {
         expect(y).toEqual('([{5}])')
     })
 
+})
 
+describe('composer', () => {
+    test('composer 0', () => {
+        expect(() => composer()()).toThrow(Error);
+    })
+
+    test('composer 1', () => {
+        let y = composer(5);
+        expect(y).toEqual(5)
+    })
+
+    test('composer 2', () => {
+        let y = composer(x => x + 3, 5);
+        expect(y).toEqual(8)
+    })
+
+
+    test('composer 4', () => {
+        let paren = x => `(${x})`
+        let brack = x => `[${x}]`
+        let brace = x => `{${x}}`
+
+        let y = composer(paren, brack, brace, 5);
+        expect(y).toEqual('([{5}])')
+    })
 
 })
